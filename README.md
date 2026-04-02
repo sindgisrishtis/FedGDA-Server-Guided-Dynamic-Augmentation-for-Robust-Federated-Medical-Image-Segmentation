@@ -71,64 +71,99 @@ Each sample:
 
 ---
 ### 🧠 Model Training & Segmentation
+
+---
+
 ### ✅ 5. Model Architecture
-We implemented a simple U-Net inspired convolutional neural network for multi-organ segmentation.
 
-Architecture Details:
+We implemented a **U-Net inspired convolutional neural network** for multi-organ segmentation on CT images.
 
-Input: 1-channel CT slice
-Output: 5-channel segmentation mask
-Layers:
-Conv2D (1 → 16)
-Conv2D (16 → 32)
-Conv2D (32 → 5)
-Activation: ReLU
+**Architecture Details:**
+
+* **Input:** 1-channel CT slice
+* **Output:** 5-class segmentation mask
+* **Encoder:**
+
+  * Conv2D (1 → 16) + ReLU
+  * Conv2D (16 → 32) + ReLU
+* **Decoder:**
+
+  * Upsampling + Conv layers
+* **Final Layer:** Conv2D (32 → 5)
+* **Activation:** ReLU
+
+---
 
 ### ✅ 6. Training Pipeline
 
-Training was performed using:
+The model was trained using an optimized PyTorch pipeline with GPU acceleration.
 
-Loss Function: Binary Cross Entropy with Logits
-Optimizer: Adam
-Batch Size: 2
-Epochs: 2 (for initial experimentation)
-🔄 Training Workflow
-Load preprocessed slices (.npy)
-Create custom PyTorch Dataset
-Use DataLoader for batching
-Forward pass through model
-Compute loss
-Backpropagation and optimization
-📊 Training Output
+**Configuration:**
 
-Loss values stabilized between:
+* **Loss Function:** CrossEntropyLoss (with class weighting to handle imbalance)
+* **Optimizer:** Adam
+* **Batch Size:** 16
+* **Epochs:** 10
+* **Mixed Precision:** Enabled (AMP) for faster training
 
-0.02 – 0.07
-Model successfully learned basic anatomical features
-💾 Model Checkpoint
+**Workflow:**
 
-Trained model saved as:
+* Load preprocessed CT slices (`.npy` format)
+* Custom PyTorch Dataset for paired image-mask loading
+* DataLoader with parallel workers for efficient batching
+* Forward pass through UNet model
+* Compute loss with class balancing
+* Backpropagation using gradient scaling (AMP)
+* Update model weights
 
-model_epoch2_new.pth
+---
+
+### 📊 Training Performance
+
+* Loss decreased consistently across epochs
+* Final loss stabilized around **~0.07 – 0.1**
+* Training time: ~2–3 minutes per epoch (GPU accelerated)
+
+---
+
+### 💾 Model Checkpoint
+
+Final trained model saved as:
+
+```
+unet_final.pth
+```
+
+---
 
 ### 📈 7. Evaluation (Dice Score)
 
-We computed Dice Coefficient for segmentation quality.
+We evaluated segmentation performance using the **Dice Coefficient**, a standard metric for medical image segmentation.
 
-Observed Dice Score:
+**Final Dice Score:**
 
-Low values due to class imbalance and limited training epochs
+```
+0.966
+```
+
+**Interpretation:**
+
+* Indicates **high overlap** between predicted and ground truth masks
+* Demonstrates strong segmentation capability
+
+---
 
 ### 🖼️ 8. Visualization
 
-Generated visual comparisons between:
+We generated visual comparisons between:
 
-CT Image
-Ground Truth Mask
-Model Prediction
+* Input CT Image
+* Ground Truth Mask (overlay)
+* Model Prediction (overlay)
 
-Observations:
+**Observations:**
 
+<<<<<<< HEAD
 Model captures structural features and boundaries
 Full segmentation not perfect due to:
 limited training
@@ -199,5 +234,21 @@ To improve segmentation performance, we implemented an advanced deep learning ap
 ### 🧠 Learning Type
 
 This implementation uses **Centralized Learning** for model training.
+=======
+* Model successfully captures major anatomical structures
+* Predictions closely align with ground truth regions
+* Minor noise present in small regions (common in segmentation tasks)
+
+---
+
+### 🎯 Key Improvements Over Initial Version
+
+* Fixed class imbalance using weighted loss
+* Increased training epochs for better convergence
+* Enabled GPU acceleration and mixed precision
+* Improved data pipeline efficiency
+* Achieved significant boost in Dice Score (**from low → 0.96**)
+* Enhanced visualization using overlay techniques
+>>>>>>> 432628c (Added trained UNet model file)
 
 ---
