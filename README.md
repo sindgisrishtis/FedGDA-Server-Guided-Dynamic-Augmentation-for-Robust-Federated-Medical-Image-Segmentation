@@ -70,3 +70,67 @@ Each sample:
 - Mask Values: `{0, 1}`
 
 ---
+### 🧠 Model Training & Segmentation
+### ✅ 5. Model Architecture
+We implemented a simple U-Net inspired convolutional neural network for multi-organ segmentation.
+
+Architecture Details:
+
+Input: 1-channel CT slice
+Output: 5-channel segmentation mask
+Layers:
+Conv2D (1 → 16)
+Conv2D (16 → 32)
+Conv2D (32 → 5)
+Activation: ReLU
+
+### ✅ 6. Training Pipeline
+
+Training was performed using:
+
+Loss Function: Binary Cross Entropy with Logits
+Optimizer: Adam
+Batch Size: 2
+Epochs: 2 (for initial experimentation)
+🔄 Training Workflow
+Load preprocessed slices (.npy)
+Create custom PyTorch Dataset
+Use DataLoader for batching
+Forward pass through model
+Compute loss
+Backpropagation and optimization
+📊 Training Output
+
+Loss values stabilized between:
+
+0.02 – 0.07
+Model successfully learned basic anatomical features
+💾 Model Checkpoint
+
+Trained model saved as:
+
+model_epoch2_new.pth
+
+### 📈 7. Evaluation (Dice Score)
+
+We computed Dice Coefficient for segmentation quality.
+
+Observed Dice Score:
+
+Low values due to class imbalance and limited training epochs
+
+### 🖼️ 8. Visualization
+
+Generated visual comparisons between:
+
+CT Image
+Ground Truth Mask
+Model Prediction
+
+Observations:
+
+Model captures structural features and boundaries
+Full segmentation not perfect due to:
+limited training
+small dataset
+class imbalance

@@ -1,4 +1,5 @@
-*.npy
-*.zip
 slices/
 processed/
+*.zip
+*.pth
+*.npy
