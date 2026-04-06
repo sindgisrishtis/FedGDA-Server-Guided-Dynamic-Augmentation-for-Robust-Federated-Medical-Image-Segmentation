@@ -252,3 +252,68 @@ This implementation uses **Centralized Learning** for model training.
 >>>>>>> 432628c (Added trained UNet model file)
 
 ---
+
+# 🧠 Federated Learning for Multi-Organ Segmentation
+
+## 📌 Overview
+
+This part of the project implements **Federated Learning** on a pre-trained Attention U-Net model for multi-organ segmentation using CT scan data.
+
+---
+
+## 🚀 What was done 
+
+### 🔹 1. Non-IID Data Partitioning
+
+* Dataset split into **3 clients**
+* Used **Dirichlet distribution (α = 1.0)**
+* Simulates real-world hospital data heterogeneity
+
+---
+
+### 🔹 2. Client-side Training
+
+* Each client trains locally on its own dataset
+* Uses **Dice + BCE loss**
+* Local training performed for each round
+
+---
+
+### 🔹 3. Federated Averaging (FedAvg)
+
+* Client models aggregated using **weighted averaging**
+* Based on number of samples per client
+
+---
+
+### 🔹 4. Federated Training
+
+* Total rounds: **5**
+* Each round:
+
+  * Local training on clients
+  * Aggregation on server
+  * Global model update
+
+---
+
+## 📊 Results
+
+| Model       | Dice Score |
+| ----------- | ---------- |
+| Centralized | 0.8967     |
+| Federated   | 0.7288     |
+
+
+---
+
+## 📷 Output
+
+(federated_vs_baseline.png)
+
+---
+
+
+
+
+
