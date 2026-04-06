@@ -267,9 +267,9 @@ This part of the project implements **Federated Learning** on a pre-trained Atte
 
 To simulate real-world data heterogeneity:
 
-*Dataset split into 3 clients
-*Used Dirichlet distribution (α = 1.0)
-*Each client receives uneven and skewed data
+* Dataset split into 3 clients
+* Used Dirichlet distribution (α = 1.0)
+* Each client receives uneven and skewed data
 
 Client Distribution:
 
@@ -287,30 +287,30 @@ Client Distribution:
 
 ### 🔹 3. Federated Averaging (FedAvg)
 
-*Each client trains locally
-*Model weights are sent to server
-*Aggregated using weighted averaging
-*Larger datasets contribute more to global model
+* Each client trains locally
+* Model weights are sent to server
+* Aggregated using weighted averaging
+* Larger datasets contribute more to global model
 
 ---
 
 ### 🔹 4. Federated Training
 
-*Global Model: Attention U-Net (pretrained baseline)
-*Clients: 3 simulated hospitals
-*Local Training: 1 epoch per round
-*Communication Rounds: 5
-*Loss Function: Dice + BCE Loss
-*Optimizer: AdamW
+* Global Model: Attention U-Net (pretrained baseline)
+* Clients: 3 simulated hospitals
+* Local Training: 1 epoch per round
+* Communication Rounds: 5
+* Loss Function: Dice + BCE Loss
+*  Optimizer: AdamW
 
 ---
 
 📈 Per-Organ Performance (Federated)
-*Liver: 0.8432
-*Spleen: 0.7614
-*Left Kidney: 0.5754
-*Right Kidney: 0.8388
-*Pancreas: 0.6250
+* Liver: 0.8432
+* Spleen: 0.7614
+* Left Kidney: 0.5754
+* Right Kidney: 0.8388
+* Pancreas: 0.6250
 
 
 ## 📊 Results
