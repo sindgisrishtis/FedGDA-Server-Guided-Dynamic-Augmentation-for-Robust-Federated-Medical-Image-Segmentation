@@ -265,11 +265,17 @@ This part of the project implements **Federated Learning** on a pre-trained Atte
 
 ### 🔹 1. Non-IID Data Partitioning
 
-* Dataset split into **3 clients**
-* Used **Dirichlet distribution (α = 1.0)**
-* Simulates real-world hospital data heterogeneity
+To simulate real-world data heterogeneity:
 
----
+Dataset split into 3 clients
+Used Dirichlet distribution (α = 1.0)
+Each client receives uneven and skewed data
+
+Client Distribution:
+
+Client 1: 1389 samples
+Client 2: 4599 samples
+Client 3: 3220 samples
 
 ### 🔹 2. Client-side Training
 
@@ -281,21 +287,31 @@ This part of the project implements **Federated Learning** on a pre-trained Atte
 
 ### 🔹 3. Federated Averaging (FedAvg)
 
-* Client models aggregated using **weighted averaging**
-* Based on number of samples per client
+Each client trains locally
+Model weights are sent to server
+Aggregated using weighted averaging
+Larger datasets contribute more to global model
 
 ---
 
 ### 🔹 4. Federated Training
 
-* Total rounds: **5**
-* Each round:
-
-  * Local training on clients
-  * Aggregation on server
-  * Global model update
+Global Model: Attention U-Net (pretrained baseline)
+Clients: 3 simulated hospitals
+Local Training: 1 epoch per round
+Communication Rounds: 5
+Loss Function: Dice + BCE Loss
+Optimizer: AdamW
 
 ---
+
+📈 Per-Organ Performance (Federated)
+Liver: 0.8432
+Spleen: 0.7614
+Left Kidney: 0.5754
+Right Kidney: 0.8388
+Pancreas: 0.6250
+
 
 ## 📊 Results
 
@@ -309,7 +325,7 @@ This part of the project implements **Federated Learning** on a pre-trained Atte
 
 ## 📷 Output
 
-(federated_vs_baseline.png)
+![Output](federated_vs_baseline.png)
 
 ---
 
