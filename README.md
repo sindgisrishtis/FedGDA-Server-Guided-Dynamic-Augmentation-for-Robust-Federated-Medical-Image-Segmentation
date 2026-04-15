@@ -302,7 +302,7 @@ Server computes:
 * ⚠️ Slight performance drop for smaller organs (spleen)
 
 ### **🧠 Summary**
-**Centralized Learning:**
+### **Centralized Learning:**
  → High-performance baseline
 ### **Federated Learning (FedAvg):**
  → Performance drop due to non-IID data
