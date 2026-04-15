@@ -203,7 +203,7 @@ This part of the project implements **Federated Learning** on a pre-trained Atte
 ---
 
 **🧠 Centralized Training (Baseline)**
-###🔹 Model Architecture
+### 🔹 Model Architecture
 * Model Used: **Attention U-Net**
 * Task: Multi-organ segmentation
 * Input: 1-channel CT slice
@@ -238,16 +238,16 @@ Client 1: 1267 samples
 Client 2: 3248 samples
 Client 3: 4693 samples**
 
-**🔹 Training Setup**
+### **🔹 Training Setup**
 * Model: Attention U-Net (initialized from centralized model)
 * Communication Rounds: 15
 * Local Epochs: 1
 *Aggregation Method: Federated Averaging (FedAvg)
 
-**📊 Federated Performance (FedAvg)**
+### **📊 Federated Performance (FedAvg)**
 Mean Dice Score: ~0.8165
 
-**⚠️ Observation**
+### **⚠️ Observation**
 Performance degradation compared to centralized model
 Reasons
 Data heterogeneity (Non-IID distribution)
@@ -255,53 +255,53 @@ Client drift
 Limited local data
 **🚀 FedGDA (Proposed Method)**
 
-**💡 Motivation**
+### **💡 Motivation**
 FedAvg fails to handle distribution mismatch across clients
 FedGDA introduces server-guided data alignment
 
-**🔹 Core Idea**
+### **🔹 Core Idea**
 Server helps clients adapt their data distributions
 Reduces inter-client variability
 
-**🔹 Client Statistics**
+### **🔹 Client Statistics**
 
 Each client computes:
 
 * Mean intensity
 * Standard deviation
 
-**🔹 Server Aggregation**
+### **🔹 Server Aggregation**
 
 Server computes:
 
 * Global mean
 * Global standard deviation
 
-**🔹 Data Alignment (Dataset Level)**
+### **🔹 Data Alignment (Dataset Level)**
 * Implemented inside dataset pipeline
 * Applied during __getitem__
 * Images normalized using global statistics
 
-**🔹 Key Enhancement: Alpha Blending**
+### **🔹 Key Enhancement: Alpha Blending**
 * Prevents over-normalization
 * Controls transformation strength
-Balances
-🌍 Global alignment
-🧩 Local feature preservation
+* Balances
+* 🌍 Global alignment
+* 🧩 Local feature preservation
 
-**📊 Final Results**
-Method	Mean Dice
-Centralized	**0.9069**
-FedAvg	**~0.8165**
-FedGDA	**0.8467**
+### **📊 Final Results**
+* Method	Mean Dice
+* Centralized	**0.9069**
+* FedAvg	**~0.8165**
+* FedGDA	**0.8467**
 
-**🎯 Key Observations**
-🚀 FedGDA improves performance by ~3–4% over FedAvg
-🔻 Reduces the gap between centralized and federated learning
-💪 Strong performance for large organs (liver, pancreas)
-⚠️ Slight performance drop for smaller organs (spleen)
+### **🎯 Key Observations**
+* 🚀 FedGDA improves performance by ~3–4% over FedAvg
+* 🔻 Reduces the gap between centralized and federated learning
+* 💪 Strong performance for large organs (liver, pancreas)
+* ⚠️ Slight performance drop for smaller organs (spleen)
 
-**🧠 Summary**
+### **🧠 Summary**
 **Centralized Learning:**
 → High-performance baseline
 **Federated Learning (FedAvg):**
