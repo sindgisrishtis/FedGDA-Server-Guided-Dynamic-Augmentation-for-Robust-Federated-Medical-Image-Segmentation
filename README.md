@@ -286,8 +286,8 @@ Server computes:
 * Prevents over-normalization
 * Controls transformation strength
 * Balances
-* 🌍 Global alignment
-* 🧩 Local feature preservation
+Global alignment
+Local feature preservation
 
 ### **📊 Final Results**
 * Method	Mean Dice
@@ -296,10 +296,10 @@ Server computes:
 * FedGDA	**0.8467**
 
 ### **🎯 Key Observations**
-* 🚀 FedGDA improves performance by ~3–4% over FedAvg
-* 🔻 Reduces the gap between centralized and federated learning
-* 💪 Strong performance for large organs (liver, pancreas)
-* ⚠️ Slight performance drop for smaller organs (spleen)
+* FedGDA improves performance by ~3–4% over FedAvg
+* Reduces the gap between centralized and federated learning
+* Strong performance for large organs (liver, pancreas)
+* Slight performance drop for smaller organs (spleen)
 
 ### **🧠 Summary**
 ### **Centralized Learning:**
