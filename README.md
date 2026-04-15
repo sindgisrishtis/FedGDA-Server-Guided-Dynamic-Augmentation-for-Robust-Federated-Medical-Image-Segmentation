@@ -304,7 +304,7 @@ Server computes:
 ### **🧠 Summary**
 **Centralized Learning:**
  → High-performance baseline
-**Federated Learning (FedAvg):**
+### **Federated Learning (FedAvg):**
  → Performance drop due to non-IID data
-**FedGDA:**
+### **FedGDA:**
  → Improved federated learning via server-guided data alignment
